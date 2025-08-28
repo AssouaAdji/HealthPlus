@@ -18,10 +18,13 @@ export default function account() {
 			</View>
 			<View>
 				<ProfileInfo icon="call" name="Phone Number" value="696117330" />
-				<ProfileInfo icon="mail" name="Email Address" value="assouaadji00@gmail.com" />
+				<ProfileInfo
+					icon="mail"
+					name="Email Address"
+					value="assouaadji00@gmail.com"
+				/>
 				<ProfileInfo icon="location" name="Location" value="Maroua" />
 				<ProfileInfo icon="calendar" name="Birth Date" value="01/04/2000" />
-				
 			</View>
 		</View>
 	);

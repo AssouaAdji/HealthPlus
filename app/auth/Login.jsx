@@ -1,6 +1,9 @@
+import { Button } from "@/components/Button";
+import { InputCard } from "@/components/InputCard";
 import { Colors } from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
+import { useState } from "react"; // Added useState
 import {
 	Image,
 	KeyboardAvoidingView,
@@ -11,11 +14,40 @@ import {
 	View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Button } from "@/components/Button";
-import { InputCard } from "@/components/InputCard";
 
 export default function Login() {
 	const router = useRouter();
+	const [email, setEmail] = useState(""); // State for email
+	const [password, setPassword] = useState(""); // State for password
+
+	const handleLogin = async () => {
+		const router = useRouter();
+		router.push("/");
+		// try {
+		// 	const response = await fetch(
+		// 		"http://192.168.56.1:8000/api/persons/login/",
+		// 		{
+		// 			method: "POST",
+		// 			headers: {
+		// 				"Content-Type": "application/json",
+		// 			},
+		// 			body: JSON.stringify({ email, password }),
+		// 		}
+		// 	);
+
+		// 	const data = await response.json();
+
+		// 	if (response.ok) {
+		// 		Alert.alert("Success", data.message);
+		// 		router.push("/"); // Navigate on successful login
+		// 	} else {
+		// 		Alert.alert("Login Failed", data.error || "Something went wrong.");
+		// 	}
+		// } catch (error) {
+		// 	console.error("Login error:", error);
+		// 	Alert.alert("Error", "Could not connect to the server.");
+		// }
+	};
 
 	return (
 		<SafeAreaView>
@@ -36,9 +68,19 @@ export default function Login() {
 						<Text style={style.text}>
 							Log Into your account to access your health data and services.
 						</Text>
-						<InputCard label="Username" />
-						<InputCard label="Password" />
-						<Button label="Sign In" onPress={() => router.push("/")}/>
+						<InputCard
+							label="Email"
+							value={email}
+							onChangeText={setEmail}
+							keyboardType="email-address"
+						/>
+						<InputCard
+							label="Password"
+							value={password}
+							onChangeText={setPassword}
+							secureTextEntry={true}
+						/>
+						<Button label="Sign In" onPress={handleLogin} />
 						<Text style={style.text}>Or</Text>
 						<TouchableOpacity style={style.googleButton}>
 							{/* Using Ionicons for Google icon */}
